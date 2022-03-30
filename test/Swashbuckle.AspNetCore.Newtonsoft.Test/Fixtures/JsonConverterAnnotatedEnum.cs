@@ -12,4 +12,9 @@ namespace Swashbuckle.AspNetCore.Newtonsoft.Test
         [EnumMember(Value = "X-foo")]
         X = 8
     }
+
+    public class EnumHolder1
+    {
+        public int? AnnotatedEnum { get; set; }
+    }
 }

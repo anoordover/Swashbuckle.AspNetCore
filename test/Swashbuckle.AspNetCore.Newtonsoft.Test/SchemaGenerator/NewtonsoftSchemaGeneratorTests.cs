@@ -695,6 +695,33 @@ namespace Swashbuckle.AspNetCore.Newtonsoft.Test
         }
 
         [Fact]
+        public void GenerateSchema_NullableProperty_ShouldBeNullable()
+        {
+            var schemaRepository = new SchemaRepository();
+
+            var referenceSchema = Subject().GenerateSchema(typeof(EnumHolder1), schemaRepository);
+
+            //TODO: see https://github.com/domaindrivendev/Swashbuckle.AspNetCore/issues/2378#issuecomment-1072977332
+            //Will this be a $ref in swagger.json?
+            //according to the comment a $ref cannot contain nullable: true
+            var schema = schemaRepository.Schemas[referenceSchema.Reference.Id];
+            var property = schema.Properties["AnnotatedEnum"];
+            Assert.True(property.Nullable);
+        }
+
+        [Fact]
+        public void GenerateSchema_QuestionmarkProperty_ShouldBeNullable()
+        {
+            var schemaRepository = new SchemaRepository();
+
+            var referenceSchema = Subject().GenerateSchema(typeof(EnumHolder1), schemaRepository);
+
+            var schema = schemaRepository.Schemas[referenceSchema.Reference.Id];
+            var property = schema.Properties["AnnotatedEnum"];
+            Assert.True(property.Nullable);
+        }
+
+        [Fact]
         public void GenerateSchema_HonorsSerializerAttribute_JsonIgnore()
         {
             var schemaRepository = new SchemaRepository();
