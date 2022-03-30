@@ -705,6 +705,8 @@ namespace Swashbuckle.AspNetCore.Newtonsoft.Test
             //Will this be a $ref in swagger.json?
             //according to the comment a $ref cannot contain nullable: true
             var schema = schemaRepository.Schemas[referenceSchema.Reference.Id];
+            var optionalIntPropery = schema.Properties["OptionalInt"];
+            Assert.True(optionalIntPropery.Nullable);
             var property = schema.Properties["AnnotatedEnum"];
             Assert.True(property.Nullable);
         }
@@ -714,7 +716,7 @@ namespace Swashbuckle.AspNetCore.Newtonsoft.Test
         {
             var schemaRepository = new SchemaRepository();
 
-            var referenceSchema = Subject().GenerateSchema(typeof(EnumHolder1), schemaRepository);
+            var referenceSchema = Subject().GenerateSchema(typeof(EnumHolder2), schemaRepository);
 
             var schema = schemaRepository.Schemas[referenceSchema.Reference.Id];
             var property = schema.Properties["AnnotatedEnum"];

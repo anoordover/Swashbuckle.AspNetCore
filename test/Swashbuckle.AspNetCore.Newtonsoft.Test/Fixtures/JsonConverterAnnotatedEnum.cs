@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -16,5 +17,14 @@ namespace Swashbuckle.AspNetCore.Newtonsoft.Test
     public class EnumHolder1
     {
         public JsonConverterAnnotatedEnum? AnnotatedEnum { get; set; }
+
+        public int? OptionalInt { get; set; }
+    }
+
+    public class EnumHolder2
+    {
+        public Nullable<JsonConverterAnnotatedEnum> AnnotatedEnum { get; set; }
+
+        public int? OptionalInt { get; set; }
     }
 }
