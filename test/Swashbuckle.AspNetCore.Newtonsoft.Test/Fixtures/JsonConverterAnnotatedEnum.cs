@@ -15,6 +15,6 @@ namespace Swashbuckle.AspNetCore.Newtonsoft.Test
 
     public class EnumHolder1
     {
-        public int? AnnotatedEnum { get; set; }
+        public JsonConverterAnnotatedEnum? AnnotatedEnum { get; set; }
     }
 }
